@@ -1,0 +1,180 @@
+/* Import Google Font 'Outfit' */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Define Premium Colors - Overriding Tailwind Variables where useful */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Modern Dark Theme Colors */
+    --premium-bg: #0a0a0f;
+    --premium-card-bg: rgba(20, 20, 30, 0.6);
+    --premium-primary: #6366f1;
+    /* Indigo */
+    --premium-accent: #8b5cf6;
+    /* Violet */
+    --premium-text: #f3f4f6;
+    --premium-muted: #9ca3af;
+}
+
+/* Force Dark Mode Looks by Default or Enhance Existing Dark Mode */
+.dark,
+:root {
+    --background: 222 47% 11%;
+    /* #0f172a - Slate 900 */
+    --foreground: 210 40% 98%;
+    /* Slate 50 */
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --primary: 250 100% 70%;
+    /* Soft Purple */
+    --primary-foreground: 222 47% 11%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --border: 217 33% 20%;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    overflow-x: hidden;
+    /* Subtle mesh gradient background */
+    background-image:
+        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+}
+
+/* Hero Section Enhancement */
+h1.bg-gradient-primary {
+    background-image: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    /* Blue to Purple to Pink */
+    background-size: 200% auto;
+    animation: shine 5s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Cards Glassmorphism */
+.bg-card {
+    background-color: var(--premium-card-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bg-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(139, 92, 246, 0.3);
+    /* Violet hint */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+/* Skills Pills */
+.rounded-full {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.rounded-full:hover {
+    background-color: hsla(var(--primary) / 0.2);
+    border-color: hsla(var(--primary) / 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+/* Contact Icons */
+.lucide {
+    transition: transform 0.3s ease;
+}
+
+.bg-primary\/10:hover .lucide {
+    transform: scale(1.2) rotate(5deg);
+    color: #a78bfa;
+    /* Light purple */
+}
+
+.bg-primary\/10 {
+    transition: background-color 0.3s;
+}
+
+.bg-primary\/10:hover {
+    background-color: rgba(167, 139, 250, 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection properties */
+::selection {
+    background: hsla(var(--primary) / 0.3);
+    color: white;
+}
+
+/* Scroll Reveal Animation */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays */
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-300 {
+    transition-delay: 300ms;
+}
