@@ -16,14 +16,26 @@ let width, height;
 let particles = [];
 let mouse = { x: null, y: null };
 
+const spotlight = document.getElementById('mouse-spotlight');
+
 window.addEventListener('mousemove', (event) => {
     mouse.x = event.x;
     mouse.y = event.y;
+
+    // Update spotlight
+    if (spotlight) {
+        spotlight.style.left = event.clientX + 'px';
+        spotlight.style.top = event.clientY + 'px';
+        if (!spotlight.classList.contains('active')) {
+            spotlight.classList.add('active');
+        }
+    }
 });
 
 window.addEventListener('mouseout', () => {
     mouse.x = null;
     mouse.y = null;
+    if (spotlight) spotlight.classList.remove('active');
 });
 
 function resize() {
