@@ -14,6 +14,17 @@ document.body.prepend(canvas); // Prepend so it's behind everything
 
 let width, height;
 let particles = [];
+let mouse = { x: null, y: null };
+
+window.addEventListener('mousemove', (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});
+
+window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+});
 
 function resize() {
     width = window.innerWidth;
@@ -71,6 +82,22 @@ function draw() {
                 ctx.lineWidth = 0.5;
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+            }
+        }
+
+        // Connect to mouse
+        if (mouse.x != null) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 150) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - dist / 150)})`; // Slightly different color/opacity for mouse
+                ctx.lineWidth = 0.8;
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(mouse.x, mouse.y);
                 ctx.stroke();
             }
         }
